@@ -1,6 +1,6 @@
 #include <iostream>
-int main () 
+int main ()
 {
-    std::cout << "chinikov.semyon" << "\n";
-    return 0;
+  std::cout << "chinikov.semyon" << "\n";
+  return 0;
 }
