@@ -1,6 +1,7 @@
 #include <iostream>
 
-int main(){
+int main()
+{
   std::cout << "vanyugin.ivan\n";
   return 0;
 }
