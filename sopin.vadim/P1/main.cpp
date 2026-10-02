@@ -5,7 +5,7 @@ int main()
 {
   int a(0);
   int prev(0);
-  bool hasPrev(false);
+  bool has_prev(false);
   std::size_t result(0);
 
   std::cin >> a;
@@ -35,12 +35,12 @@ int main()
       break;
     }
 
-    if (hasPrev && (a > prev))
+    if (has_prev && (a > prev))
     {
       ++result;
     }
     prev = a;
-    hasPrev = true;
+    has_prev = true;
 
     std::cin >> a;
   }
