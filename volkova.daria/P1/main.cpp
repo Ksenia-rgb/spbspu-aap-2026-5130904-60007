@@ -1,6 +1,7 @@
 #include <iostream>
 
-int main() {
+int main()
+{
   const int k_special_exit_code = 2;
   int prev = 0;
   int curr = 0;
