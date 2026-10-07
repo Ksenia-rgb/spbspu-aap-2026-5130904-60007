@@ -3,7 +3,7 @@
 int main() {
   int prev, curr;
 
-  if (!(std::sin >> prev)) {
+  if (!(std::cin >> prev)) {
     return 1;
   }
 
