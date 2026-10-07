@@ -19,7 +19,7 @@ int main() {
     }
     prev = curr;
   }
-  
+
   if (count == 0) {
     return 2;
   }
