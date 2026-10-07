@@ -1,7 +1,7 @@
 #include <iostream>
 
 int main() {
-  const int kSpecialExitCode = 2;
+  const int k_special_exit_code = 2;
   int prev = 0;
   int curr = 0;
 
@@ -10,7 +10,7 @@ int main() {
   }
 
   if (prev == 0) {
-    return kSpecialExitCode;
+    return k_special_exit_code;
   }
 
   int count = 0;
@@ -23,7 +23,7 @@ int main() {
   }
 
   if (count == 0) {
-    return kSpecialExitCode;
+    return k_special_exit_code;
   }
 
   std::cout << count << std::endl;
