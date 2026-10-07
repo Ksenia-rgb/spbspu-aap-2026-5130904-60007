@@ -1,14 +1,16 @@
 #include <iostream>
 
 int main() {
-  int prev, curr;
+  const int kSpecialExitCode = 2;
+  int prev = 0;
+  int curr = 0;
 
   if (!(std::cin >> prev)) {
     return 1;
   }
 
   if (prev == 0) {
-    return 2;
+    return kSpecialExitCode;
   }
 
   int count = 0;
@@ -21,7 +23,7 @@ int main() {
   }
 
   if (count == 0) {
-    return 2;
+    return kSpecialExitCode;
   }
 
   std::cout << count << std::endl;
