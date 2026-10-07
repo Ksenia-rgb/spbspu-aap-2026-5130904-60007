@@ -1,4 +1,4 @@
-#include <iostrean>
+#include <iostream>
 
 int main() {
   int prev, curr;
