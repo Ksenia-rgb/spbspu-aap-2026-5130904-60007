@@ -26,7 +26,7 @@ int main()
 
     if (!is_first && cur > prev)
     {
-      if (count == std::numeric_limits<unsigned long long>::max())
+      if (count == std::numeric_limits< unsigned long long >::max())
       {
         overflow = true;
       }
