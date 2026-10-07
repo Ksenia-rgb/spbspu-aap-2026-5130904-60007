@@ -1,8 +1,6 @@
 #include <iostream>
 
-int main()
-{
-   std::cout << "mirat.mukhametdinov\n";
-   return 0;
+int main() {
+  std::cout << "mirat.mukhametdinov\n";
+  return 0;
 }
-
