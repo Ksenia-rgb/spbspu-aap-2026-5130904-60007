@@ -13,7 +13,7 @@ int main() {
 
   int count = 0;
 
-  while (std::cin >> curr && curr == 0) {
+  while (std::cin >> curr && curr != 0) {
     if (curr % prev == 0) {
       ++count;
     }
