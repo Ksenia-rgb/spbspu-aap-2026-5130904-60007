@@ -7,7 +7,6 @@ int main() {
   bool has_prev{false};
   std::size_t result{0};
 
-
   while ((std::cin >> a) && (a != 0))
   {
     if (has_prev && (a > prev))
