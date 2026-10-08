@@ -19,6 +19,8 @@ int main() {
   if (!std::cin)
   {
   std::cerr << "Unexpected input\n";
+
+  
   return 1;
   }
   std::cout << result << "\n";
