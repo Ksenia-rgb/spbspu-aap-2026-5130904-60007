@@ -4,8 +4,8 @@ unsigned maxNumberCounter();
 int main()
 {
   try {
-    unsigned _res = maxNumberCounter();
-    std::cout << _res << "\n";
+    const unsigned res = maxNumberCounter();
+    std::cout << res << "\n";
     return 0;
   } catch (const std::invalid_argument &e) {
     std::cerr << e.what() << "\n";
