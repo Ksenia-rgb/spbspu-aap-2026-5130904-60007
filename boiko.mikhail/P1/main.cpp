@@ -1,35 +1,44 @@
 #include <iostream>
-#define INCORRECT_INPUT 1
-#define NOT_ENOUGH_DATA 2
 
+unsigned maxNumberCounter();
 int main()
 {
-  long long input{0};
-  long long max{0};
-  unsigned counter{0};
+    try 
+    {
+        unsigned _res = maxNumberCounter();
+        std::cout << _res << "\n";
+        return 0;
+    }
+    catch (const std::invalid_argument &e)
+    {
+        std::cerr << e.what() << "\n";
+        return 1;
+    }
+    catch (const std::length_error &e)
+    {
+        std::cerr << e.what() << "\n";
+        std::clog << "можно было написать класс от std::logic_error и типы ошибок на основе содержания, но это бы избыточно для таких масштабов" << "\n";
+        return 2;
+    }
+}
+unsigned maxNumberCounter() {
+    long long max{0LL};
+    long long input{0LL};
+    unsigned counter {0U};
 
-  while ((std::cin >> input) && (input != 0))
-  {
-    if (input < max)
+    while ((std::cin >> input) && (input != 0))
     {
-      ++counter;
+        if (input < max)
+            ++counter;
+        if (max < input)
+        {
+            max = input;
+            counter = 0;
+        }
     }
-    if (max < input)
-    {
-      max = input;
-      counter = 0;
-    }
-  }
-  if (!std::cin)
-  {
-    std::cerr << "Incorrect input" << '\n';
-    return INCORRECT_INPUT;
-  }
-  if (!max)
-  {
-    std::cerr << "Not enough data" << '\n';
-    return NOT_ENOUGH_DATA;
-  }
-  std::cout << "Count:" << counter;
-  return 0;
+    if (!std::cin)
+        throw std::invalid_argument("Incorrect input");
+    if (!max)
+        throw std::length_error("Not enought data");
+    return counter;
 }
