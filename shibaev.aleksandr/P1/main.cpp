@@ -1,10 +1,11 @@
 #include <iostream>
+#include <cstddef>
 
 namespace shibaev {
-  int sign_changes() {
+  int signChanges() {
     int a = {0};
     char last_sign = {'?'};
-    char sign;
+    char sign = {' '};
     std::size_t max_count = {0};
     bool eof = {false};
 
@@ -41,5 +42,5 @@ namespace shibaev {
 }
 
 int main() {
-  return shibaev::sign_changes();
+  return shibaev::signChanges();
 }
