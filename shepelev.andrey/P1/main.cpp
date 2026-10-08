@@ -2,19 +2,38 @@
 
 int main()
 {
-  int x, prev = 0;
-  int cur = 0, best = 0;
-  while (std::cin >> x && x != 0)
+  const int startLength = 1;
+
+  int number = 0;
+  int previous = 0;
+  int currentLength = 0;
+  int maxLength = 0;
+
+  while ((std::cin >> number) && (number != 0))
   {
-    if (cur > 0 && x >= prev)
-      cur++;
+    if ((currentLength > 0) && (number >= previous))
+    {
+      currentLength++;
+    }
     else
-      cur = 1;
-    if (cur > best)
-      best = cur;
-    prev = x;
+    {
+      currentLength = startLength;
+    }
+
+    if (currentLength > maxLength)
+    {
+      maxLength = currentLength;
+    }
+
+    previous = number;
   }
-  std::cout << best << std::endl;
+
+  if (std::cin.fail() && !std::cin.eof())
+  {
+    std::cerr << "Invalid input\n";
+    return 1;
+  }
+
+  std::cout << maxLength << '\n';
   return 0;
 }
-
