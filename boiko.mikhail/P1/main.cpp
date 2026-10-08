@@ -1,11 +1,11 @@
 #include <iostream>
+#include <stdexcept>
 
 unsigned maxNumberCounter();
 int main()
 {
   try {
-    const unsigned res = maxNumberCounter();
-    std::cout << res << "\n";
+    std::cout << maxNumberCounter() << "\n";
     return 0;
   } catch (const std::invalid_argument &e) {
     std::cerr << e.what() << "\n";
