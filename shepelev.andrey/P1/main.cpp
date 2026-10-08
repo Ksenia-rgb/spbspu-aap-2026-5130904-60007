@@ -2,27 +2,27 @@
 
 int main()
 {
-  const int startLength = 1;
+  const int start_length = 1;
 
   int number = 0;
   int previous = 0;
-  int currentLength = 0;
-  int maxLength = 0;
+  int current_length = 0;
+  int max_length = 0;
 
   while ((std::cin >> number) && (number != 0))
   {
-    if ((currentLength > 0) && (number >= previous))
+    if ((current_length > 0) && (number >= previous))
     {
-      currentLength++;
+      current_length++;
     }
     else
     {
-      currentLength = startLength;
+      current_length = start_length;
     }
 
-    if (currentLength > maxLength)
+    if (current_length > max_length)
     {
-      maxLength = currentLength;
+      max_length = current_length;
     }
 
     previous = number;
@@ -34,6 +34,6 @@ int main()
     return 1;
   }
 
-  std::cout << maxLength << '\n';
+  std::cout << max_length << '\n';
   return 0;
 }
