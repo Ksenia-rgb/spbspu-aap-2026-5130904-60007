@@ -8,18 +8,8 @@ namespace shibaev {
     char last_sign = {'?'};
     char sign = {' '};
     std::size_t max_count = {0};
-    bool eof = {false};
 
-    while (eof == false) {
-      std::cin >> a;
-      if (!std::cin) {
-        std::cerr << "Incorrect input" << '\n';
-        return 1;
-      } else if (a == 0) {
-        eof = true;
-        continue;
-      }
-
+    while ((std::cin >> a) && (a != 0)) {
       if (a < 0) {
         sign = '-';
       } else {
@@ -35,6 +25,11 @@ namespace shibaev {
         max_count++;
       }
       last_sign = sign;
+    }
+
+    if (!std::cin) {
+      std::cerr << "Incorrect input" << '\n';
+      return 1;
     }
 
     std::cout << max_count << '\n';
