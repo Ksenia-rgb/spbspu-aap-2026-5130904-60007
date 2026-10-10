@@ -2,13 +2,13 @@
 
 int main()
 {
-  int a { 0 };
-  int amount { 0 };
-  int first { 0 };
-  int second { 0 };
-  int third { 0 };
-  std::size_t count { 0 };
-  bool eof { false };
+  int a {0};
+  int amount {0};
+  int first {0};
+  int second {0};
+  int third {0};
+  std::size_t count {0};
+  bool eof {false};
 
   while (eof != true) // (!eof)
   {
