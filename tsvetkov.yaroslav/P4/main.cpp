@@ -58,6 +58,11 @@ int main()
     std::cerr << "Not enough memory\n";
     return 1;
   }
+  if (len == 0 && std::cin.eof()) {
+    delete[] input;
+    std::cerr << "No input\n";
+    return 1;
+  }
 
   char* result = nullptr;
   try {
