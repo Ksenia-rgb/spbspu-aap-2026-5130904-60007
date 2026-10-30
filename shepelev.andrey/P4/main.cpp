@@ -9,6 +9,7 @@ namespace shepelev
   constexpr std::size_t initial_capacity = 16;
   constexpr std::size_t growth_factor = 2;
   constexpr int memory_error_code = 1;
+  constexpr int input_error_code = 2;
 
   char* convertToLower(char* dest, const char* src) noexcept
   {
@@ -87,6 +88,13 @@ int main()
   {
     std::cerr << "Error: cannot allocate memory for input string\n";
     return shepelev::memory_error_code;
+  }
+
+  if (source[0] == '\0' && std::cin.eof())
+  {
+    delete[] source;
+    std::cerr << "Error: no input string\n";
+    return shepelev::input_error_code;
   }
 
   char* const result = new (std::nothrow) char[std::strlen(source) + 1];
