@@ -2,63 +2,66 @@
 #include <iostream>
 #include <string>
 
-bool parse_num_arg(const std::string& arg, int& num)
+namespace brattsev
 {
-  if (arg == "1")
+  bool parse_num_arg(const std::string& arg, int& num)
   {
-    num = 1;
-    return true;
-  }
-  if (arg == "2")
-  {
-    num = 2;
-    return true;
-  }
-  return false;
-}
-
-bool read_matrix(std::ifstream& fin, int* matrix, int rows, int cols)
-{
-  for (int i = 0; i < rows; ++i)
-  {
-    for (int j = 0; j < cols; ++j)
+    if (arg == "1")
     {
-      if (!(fin >> matrix[i * cols + j]))
+      num = 1;
+      return true;
+    }
+    if (arg == "2")
+    {
+      num = 2;
+      return true;
+    }
+    return false;
+  }
+
+  bool read_matrix(std::ifstream& fin, int* matrix, int rows, int cols)
+  {
+    for (int i = 0; i < rows; ++i)
+    {
+      for (int j = 0; j < cols; ++j)
       {
-        return false;
+        if (!(fin >> matrix[i * cols + j]))
+        {
+          return false;
+        }
       }
     }
+    return true;
   }
-  return true;
-}
 
-bool is_upper_triangular(const int* matrix, int rows, int cols)
-{
-  for (int i = 0; i < rows; ++i)
+  bool is_upper_triangular(const int* matrix, int rows, int cols)
   {
-    for (int j = 0; j < cols; ++j)
+    for (int i = 0; i < rows; ++i)
     {
-      if (i > j && matrix[i * cols + j] != 0)
+      for (int j = 0; j < cols; ++j)
       {
-        return false;
+        if (i > j && matrix[i * cols + j] != 0)
+        {
+          return false;
+        }
       }
     }
+    return true;
   }
-  return true;
-}
 
-void write_result(const std::string& filename, bool result)
-{
-  std::ofstream fout(filename);
-  if (fout.is_open())
+  void write_result(const std::string& filename, bool result)
   {
-    if (result)
+    std::ofstream fout(filename);
+    if (fout.is_open())
     {
-      fout << "true\n";
-    }
-    else
-    {
-      fout << "false\n";
+      if (result)
+      {
+        fout << "true\n";
+      }
+      else
+      {
+        fout << "false\n";
+      }
     }
   }
 }
@@ -72,7 +75,7 @@ int main(int argc, char* argv[])
   }
 
   int num = 0;
-  if (!parse_num_arg(argv[1], num))
+  if (!brattsev::parse_num_arg(argv[1], num))
   {
     std::cerr << "error\n";
     return 1;
@@ -121,7 +124,7 @@ int main(int argc, char* argv[])
     matrix = new int[total_elements];
   }
 
-  if (!read_matrix(fin, matrix, rows, cols))
+  if (!brattsev::read_matrix(fin, matrix, rows, cols))
   {
     if (num == 2)
     {
@@ -131,9 +134,9 @@ int main(int argc, char* argv[])
     return 2;
   }
 
-  bool is_upper = is_upper_triangular(matrix, rows, cols);
+  bool is_upper = brattsev::is_upper_triangular(matrix, rows, cols);
 
-  write_result(output_file, is_upper);
+  brattsev::write_result(output_file, is_upper);
 
   if (num == 2)
   {
@@ -141,5 +144,4 @@ int main(int argc, char* argv[])
   }
 
   return 0;
-  
 }
