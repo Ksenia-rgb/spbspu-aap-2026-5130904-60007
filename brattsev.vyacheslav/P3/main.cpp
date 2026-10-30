@@ -93,7 +93,7 @@ int main(int argc, char* argv[])
 
   int rows = 0;
   int cols = 0;
-  if (!(fin >> rows >> cols) || rows <= 0 || cols <= 0)
+  if (!(fin >> rows >> cols)  rows <= 0  cols <= 0)
   {
     std::cerr << "error\n";
     return 2;
