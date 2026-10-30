@@ -36,6 +36,10 @@ namespace brattsev
 
   bool is_upper_triangular(const int* matrix, int rows, int cols)
   {
+    if (rows <= 0 || cols <= 0)
+    {
+      return false;
+    }
     for (int i = 0; i < rows; ++i)
     {
       for (int j = 0; j < cols; ++j)
@@ -93,7 +97,7 @@ int main(int argc, char* argv[])
 
   int rows = 0;
   int cols = 0;
-  if (!(fin >> rows >> cols) || rows <= 0 || cols <= 0)
+  if (!(fin >> rows >> cols))
   {
     std::cerr << "error\n";
     return 2;
