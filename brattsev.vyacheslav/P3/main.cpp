@@ -4,6 +4,9 @@
 
 namespace brattsev
 {
+  constexpr int MAX_ELEMENTS = 2147483647;
+  constexpr int MAX_STACK_SIZE = 10000;
+
   bool parse_num_arg(const std::string& arg, int& num)
   {
     if (arg == "1")
@@ -103,21 +106,21 @@ int main(int argc, char* argv[])
     return 2;
   }
 
-  long long total_elements = static_cast<long long>(rows) * cols;
-  if (total_elements > 2147483647)
+  const long long total_elements = static_cast<long long>(rows) * cols;
+  if (total_elements > brattsev::MAX_ELEMENTS)
   {
     std::cerr << "error\n";
     return 2;
   }
 
-  if (num == 1 && total_elements > 10000)
+  if (num == 1 && total_elements > brattsev::MAX_STACK_SIZE)
   {
     std::cerr << "error\n";
     return 2;
   }
 
   int* matrix = nullptr;
-  int stack_matrix[10000];
+  int stack_matrix[brattsev::MAX_STACK_SIZE];
 
   if (num == 1)
   {
@@ -138,7 +141,7 @@ int main(int argc, char* argv[])
     return 2;
   }
 
-  bool is_upper = brattsev::is_upper_triangular(matrix, rows, cols);
+  const bool is_upper = brattsev::is_upper_triangular(matrix, rows, cols);
 
   brattsev::write_result(output_file, is_upper);
 
