@@ -27,7 +27,7 @@ namespace sapozhkov
     {
       if (size + 1 == cap)
       {
-        char* bigger = new char[cap*2];
+        char* const bigger = new char[cap * 2];
         for (size_t i = 0; i < size; ++i)
         {
           bigger[i] = str[i];
@@ -46,7 +46,7 @@ namespace sapozhkov
 
 int main()
 {
-  const char* second = "abs";
+  const char* const second = "abs";
   size_t size = 0;
   char* str = nullptr;
   try
@@ -56,6 +56,12 @@ int main()
   catch (const std::bad_alloc&)
   {
     std::cerr << "Not enough memory" << '\n';
+    return 1;
+  }
+  if (size == 0 && std::cin.eof())
+  {
+    delete[] str;
+    std::cerr << "No input\n";
     return 1;
   }
   std::cout << sapozhkov::hasSame(str, second) << '\n';
