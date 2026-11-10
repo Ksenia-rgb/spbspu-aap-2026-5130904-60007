@@ -7,13 +7,14 @@ namespace kugushev {
   constexpr std::size_t capacity = 16;
   constexpr std::size_t coef = 2;
   constexpr int memerr = 1;
+  constexpr int inputerr = 2;
   char* readline(std::size_t& length);
   char* uniteTwo(const char* a, const char* b, char* res) noexcept;
 }
 
 int main()
 {
-  const char* second = "def ";
+  const char* const second = "def ";
 
   std::size_t len = 0;
   char* input = nullptr;
@@ -22,6 +23,12 @@ int main()
   } catch (const std::bad_alloc&) {
     std::cerr << "Not enough memory\n";
     return kugushev::memerr;
+  }
+
+  if (len == 0) {
+    delete[] input;
+    std::cerr << "Empty input\n";
+    return kugushev::inputerr;
   }
 
   char* result = nullptr;
