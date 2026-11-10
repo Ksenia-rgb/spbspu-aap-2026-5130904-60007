@@ -1,0 +1,59 @@
+#include <iostream>
+#include <new>
+#include <cctype>
+
+
+int hasRepeatingDigits(const char* str);
+
+int main()
+{
+    int cap = 16;
+    char* buffer = new (std::nothrow) char[cap];
+    if (buffer == nullptr)
+    {
+        std::cerr << "Out of memory!" << '\n';
+        return 1;
+    }
+    int k = 0;
+    char g{};
+    while (std::cin.get(g) && g != '\n')
+    {
+        if (k == cap - 1) {
+            cap *= 2;
+            char* new_buffer = new (std::nothrow) char[cap];
+            if (new_buffer == nullptr)
+            {
+                std::cerr << "Out of memory!" << '\n';
+                delete[] buffer;
+                return 1;
+            }
+            for (int i = 0; i < k; i++)
+            {
+                new_buffer[i] = buffer[i];
+            }
+            delete[] buffer;
+            buffer = new_buffer;
+        }
+        buffer[k] = g;
+        k++;
+    }
+    buffer[k] = '\0';
+    std::cout << hasRepeatingDigits(buffer) << '\n';
+    delete[] buffer;
+    return 0;
+}
+
+int hasRepeatingDigits(const char* str) {
+    int blok[10]{};
+    for (int i = 0; str[i] != '\0'; i++) {
+        if (std::isdigit(str[i])) {
+            int d = str[i] - '0';
+            if (blok[d]) {
+                return 1;
+            }
+            blok[d] = 1;
+        }
+
+    }
+    return 0;
+}
