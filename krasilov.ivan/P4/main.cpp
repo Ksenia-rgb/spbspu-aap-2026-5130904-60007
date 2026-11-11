@@ -2,8 +2,7 @@
 #include <iostream>
 #include <new>
 
-namespace digits
-{
+namespace digits {
 int hasRepeatingDigits(const char *str);
 }
 
