@@ -2,8 +2,9 @@
 #include <iostream>
 #include <new>
 
-namespace digits {
-int hasRepeatingDigits(const char *str);
+namespace digits
+{
+  int hasRepeatingDigits(const char *str);
 }
 
 int main()
@@ -54,6 +55,11 @@ int main()
 
 int digits::hasRepeatingDigits(const char *str)
 {
+  if (str == nullptr)
+  {
+    std::cerr << "Null pointer!" << '\n';
+    return 0;
+  }
   int blok[10]{};
   for (int i = 0; str[i] != '\0'; i++)
   {
