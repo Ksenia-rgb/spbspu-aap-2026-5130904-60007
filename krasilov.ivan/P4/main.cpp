@@ -3,32 +3,29 @@
 #include <cctype>
 
 namespace digits {
-    int hasRepeatingDigits(const char* str);
+    int hasRepeatingDigits(const char *str);
 }
-int main()
-{
-    int cap = 16;
-    char* buffer = new (std::nothrow) char[cap];
-    if (buffer == nullptr)
-    {
+
+int main() {
+    const int INITIAL_CAPACITY = 16;
+    int cap = INITIAL_CAPACITY;
+    char *buffer = new(std::nothrow) char[cap];
+    if (buffer == nullptr) {
         std::cerr << "Out of memory!" << '\n';
         return 1;
     }
     int k = 0;
     char g{};
-    while (std::cin.get(g) && g != '\n')
-    {
+    while (std::cin.get(g) && g != '\n') {
         if (k == cap - 1) {
             cap *= 2;
-            char* new_buffer = new (std::nothrow) char[cap];
-            if (new_buffer == nullptr)
-            {
+            char* const new_buffer = new(std::nothrow) char[cap];
+            if (new_buffer == nullptr) {
                 std::cerr << "Out of memory!" << '\n';
                 delete[] buffer;
                 return 1;
             }
-            for (int i = 0; i < k; i++)
-            {
+            for (int i = 0; i < k; i++) {
                 new_buffer[i] = buffer[i];
             }
             delete[] buffer;
@@ -48,17 +45,16 @@ int main()
     return 0;
 }
 
-int digits::hasRepeatingDigits(const char* str) {
+int digits::hasRepeatingDigits(const char *str) {
     int blok[10]{};
     for (int i = 0; str[i] != '\0'; i++) {
         if (std::isdigit(str[i])) {
-            int d = str[i] - '0';
+            const int d = str[i] - '0';
             if (blok[d]) {
                 return 1;
             }
             blok[d] = 1;
         }
-
     }
     return 0;
 }
