@@ -37,6 +37,11 @@ int main()
         buffer[k] = g;
         k++;
     }
+    if (k == 0) {
+        std::cerr << "Empty input!" << '\n';
+        delete[] buffer;
+        return 1;
+    }
     buffer[k] = '\0';
     std::cout << digits::hasRepeatingDigits(buffer) << '\n';
     delete[] buffer;
