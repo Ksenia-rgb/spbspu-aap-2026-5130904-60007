@@ -2,7 +2,6 @@
 #include <new>
 #include <cctype>
 
-
 int hasRepeatingDigits(const char* str);
 
 int main()
@@ -43,12 +42,16 @@ int main()
     return 0;
 }
 
-int hasRepeatingDigits(const char* str) {
+int hasRepeatingDigits(const char* str) 
+{
     int blok[10]{};
-    for (int i = 0; str[i] != '\0'; i++) {
-        if (std::isdigit(str[i])) {
+    for (int i = 0; str[i] != '\0'; i++) 
+    {
+        if (std::isdigit(str[i])) 
+        {
             int d = str[i] - '0';
-            if (blok[d]) {
+            if (blok[d]) 
+            {
                 return 1;
             }
             blok[d] = 1;
