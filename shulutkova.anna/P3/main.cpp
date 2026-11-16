@@ -7,8 +7,7 @@ const int ARGC_EXACT = 4;
 const int NUM_STATIC = 1;
 const int NUM_DYNAMIC = 2;
 const std::size_t MAX_NUMBER_OF_ELEMENTS = 10000;
-bool readMatrix(std::ifstream &file, std::size_t rows, std::size_t cols,
-                int *matrix) { //NOLINT
+bool readMatrix(std::ifstream &file, std::size_t rows, std::size_t cols, int *matrix) { // NOLINT
   for (std::size_t i = 0; i < rows; i++) {
     for (std::size_t j = 0; j < cols; j++) {
       file >> *(matrix + i * cols + j);
