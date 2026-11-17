@@ -8,6 +8,7 @@ namespace kugushev {
   constexpr std::size_t coef = 2;
   constexpr int memerr = 1;
   constexpr int inputerr = 2;
+  constexpr int argerr = 3;
   char* readline(std::size_t& length);
   char* uniteTwo(const char* a, const char* b, char* res) noexcept;
 }
@@ -40,7 +41,12 @@ int main()
     return kugushev::memerr;
   }
 
-  kugushev::uniteTwo(input, second, result);
+  if (kugushev::uniteTwo(input, second, result) == nullptr) {
+    delete[] result;
+    delete[] input;
+    std::cerr << "Invalid argument\n";
+    return kugushev::argerr;
+  }
   std::cout << result << "\n";
 
   delete[] result;
@@ -81,6 +87,9 @@ char* kugushev::readline(std::size_t& length)
 
 char* kugushev::uniteTwo(const char* a, const char* b, char* res) noexcept
 {
+  if (a == nullptr || b == nullptr || res == nullptr) {
+    return nullptr;
+  }
   std::size_t i = 0;
   std::size_t j = 0;
   std::size_t k = 0;
