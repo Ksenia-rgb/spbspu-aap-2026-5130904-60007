@@ -4,6 +4,9 @@
 #include <new>
 
 namespace himich {
+  constexpr std::size_t alphabet_size = 256;
+  constexpr std::size_t top_size = 3;
+
   char* getFrequentTop(char* dest, const char* src) noexcept
   {
     if (dest == nullptr) {
@@ -14,27 +17,27 @@ namespace himich {
       return dest;
     }
 
-    std::size_t counts[256] = {};
-    bool chosen[256] = {};
+    std::size_t counts[alphabet_size] = {};
+    bool chosen[alphabet_size] = {};
 
     while (*src != '\0') {
-      const unsigned char ch = static_cast<unsigned char>(*src);
+      const unsigned char ch = static_cast< unsigned char >(*src);
       if (!std::isspace(ch)) {
         ++counts[ch];
       }
       ++src;
     }
 
-    for (int k = 0; k < 3; ++k) {
+    for (std::size_t k = 0; k < top_size; ++k) {
       std::size_t max_count = 0;
-      int best = -1;
-      for (int i = 0; i < 256; ++i) {
+      std::size_t best = 0;
+      for (std::size_t i = 0; i < alphabet_size; ++i) {
         if (counts[i] > max_count) {
           max_count = counts[i];
           best = i;
         }
       }
-      if (best == -1) {
+      if (max_count == 0) {
         break;
       }
       chosen[best] = true;
@@ -42,9 +45,9 @@ namespace himich {
     }
 
     std::size_t size = 0;
-    for (int i = 0; i < 256; ++i) {
+    for (std::size_t i = 0; i < alphabet_size; ++i) {
       if (chosen[i]) {
-        dest[size++] = static_cast<char>(i);
+        dest[size++] = static_cast< char >(i);
       }
     }
     dest[size] = '\0';
@@ -103,7 +106,13 @@ int main()
     return 1;
   }
 
-  char result[4] = {};
+  if (input_str[0] == '\0') {
+    delete[] input_str;
+    std::cerr << "Empty input\n";
+    return 1;
+  }
+
+  char result[himich::top_size + 1] = {};
   himich::getFrequentTop(result, input_str);
 
   std::cout << result << '\n';
