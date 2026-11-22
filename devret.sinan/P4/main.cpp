@@ -7,6 +7,7 @@ namespace devret
 {
   const size_t top_count = 3;
   const size_t alphabet_size = 256;
+  const size_t initial_capacity = 16;
 
   char *topFrequent(char *dest, const char *src)
   {
@@ -53,7 +54,7 @@ namespace devret
 
   char *readLine(std::istream &in)
   {
-    size_t capacity = 16;
+    size_t capacity = initial_capacity;
     size_t length = 0;
     char *buffer = new (std::nothrow) char[capacity];
     if (buffer == nullptr)
@@ -66,7 +67,7 @@ namespace devret
     {
       if (length + 1 == capacity)
       {
-        char *bigger = new (std::nothrow) char[capacity * 2];
+        char *const bigger = new (std::nothrow) char[capacity * 2];
         if (bigger == nullptr)
         {
           delete[] buffer;
@@ -89,14 +90,21 @@ namespace devret
 
 int main()
 {
-  char *line = devret::readLine(std::cin);
+  std::cin.peek();
+  if (std::cin.eof())
+  {
+    std::cerr << "Error: empty input\n";
+    return 1;
+  }
+
+  char *const line = devret::readLine(std::cin);
   if (line == nullptr)
   {
     std::cerr << "Error: not enough memory\n";
     return 1;
   }
 
-  char *result = new (std::nothrow) char[devret::top_count + 1];
+  char *const result = new (std::nothrow) char[devret::top_count + 1];
   if (result == nullptr)
   {
     delete[] line;
