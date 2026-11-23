@@ -5,7 +5,8 @@
 
 int main()
 {
-  size_t buffer = 1024;
+  constexpr size_t initial_buffer = 1024;
+  size_t buffer = initial_buffer;
   char* string = new (std::nothrow) char[buffer];
   if (!string)
   {
@@ -20,7 +21,7 @@ int main()
   }
 
   constexpr size_t max_alphabet_size = 27;
-  char* new_string = new (std::nothrow) char[max_alphabet_size];
+  char* const new_string = new (std::nothrow) char[max_alphabet_size];
   if (!new_string)
   {
     delete[] string;
