@@ -42,28 +42,25 @@ int main()
   int length = 0;
   char* buffer = new char[capacity];
   char c = 0;
-  
   while (std::cin.get(c) && c != '\n')
   {
     if (length + 1 >= capacity)
     {
       capacity *= 2;
-      const char* new_buffer = new char[capacity];
+      char* new_buffer = new char[capacity];
       for (int i = 0; i < length; ++i)
       {
         new_buffer[i] = buffer[i];
       }
       delete[] buffer;
-      buffer = const_cast<char*>(new_buffer);
+      buffer = new_buffer;
     }
     buffer[length] = c;
     length++;
   }
   buffer[length] = '\0';
-  
   const int result = brattsev::countDistinctLatin(buffer);
   std::cout << result << "\n";
-  
   delete[] buffer;
   return 0;
 }
