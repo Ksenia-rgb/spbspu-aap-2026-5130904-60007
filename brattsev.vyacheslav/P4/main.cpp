@@ -47,7 +47,7 @@ int main()
     if (length + 1 >= capacity)
     {
       capacity *= 2;
-      char* new_buffer = new char[capacity];
+      char* const new_buffer = new char[capacity];
       for (int i = 0; i < length; ++i)
       {
         new_buffer[i] = buffer[i];
