@@ -3,10 +3,9 @@
 
 namespace brattsev
 {
-
   int countDistinctLatin(const char* str)
   {
-    int counts[26] = {0}; 
+    int counts[26] = {0};
     int result = 0;
 
     for (int i = 0; str[i] != '\0'; ++i)
@@ -37,7 +36,6 @@ namespace brattsev
 
 int main()
 {
-
   int capacity = 16;
   int length = 0;
   char* buffer = new char[capacity];
@@ -45,7 +43,6 @@ int main()
   char c;
   while (std::cin.get(c) && c != '\n')
   {
-    
     if (length + 1 >= capacity)
     {
       capacity *= 2;
@@ -64,10 +61,8 @@ int main()
   }
   buffer[length] = '\0';
 
- 
   int result = brattsev::countDistinctLatin(buffer);
 
- 
   std::cout << result << "\n";
 
   delete[] buffer;
