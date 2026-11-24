@@ -8,7 +8,7 @@ namespace kugushev
   class Ellipse: public Shape
   {
   public:
-    Ellipse(point_t centr, double radiusX, double radiusY);
+    Ellipse(point_t centr, double radius_x, double radius_y);
 
     double getArea() const override;
     rectangle_t getFrameRect() const override;
@@ -18,8 +18,8 @@ namespace kugushev
 
   private:
     point_t centr_;
-    double radiusX_;
-    double radiusY_;
+    double radius_x_;
+    double radius_y_;
   };
 }
 

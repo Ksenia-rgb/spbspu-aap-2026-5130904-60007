@@ -12,13 +12,24 @@ namespace kugushev
 
 int main()
 {
-  kugushev::Rectangle rect{{2.0, 3.0}, 4.0, 2.0};
-  kugushev::Diamond diam{{3.0, 4.0}, 2.0, 3.0};
-  kugushev::Ellipse ellip{{4.0, 5.0}, 2.0, 3.0};
+  constexpr kugushev::point_t rect_center{2.0, 3.0};
+  constexpr double rect_width = 4.0;
+  constexpr double rect_height = 2.0;
+  constexpr kugushev::point_t diamond_center{3.0, 4.0};
+  constexpr double diamond_xdiag = 2.0;
+  constexpr double diamond_ydiag = 3.0;
+  constexpr kugushev::point_t ellipse_center{4.0, 5.0};
+  constexpr double ellipse_radius_x = 2.0;
+  constexpr double ellipse_radius_y = 3.0;
+  constexpr double half = 0.5;
+
+  kugushev::Rectangle rect{rect_center, rect_width, rect_height};
+  kugushev::Diamond diam{diamond_center, diamond_xdiag, diamond_ydiag};
+  kugushev::Ellipse ellip{ellipse_center, ellipse_radius_x, ellipse_radius_y};
 
   constexpr int count = 3;
   kugushev::Shape* shapes[count]{&rect, &diam, &ellip};
-  for (const kugushev::Shape* shape : shapes)
+  for (const kugushev::Shape* const shape : shapes)
   {
     if (shape == nullptr)
     {
@@ -26,7 +37,7 @@ int main()
       return 1;
     }
   }
-  const char* names[count]{"Rectangle", "Diamond", "Ellipse"};
+  const char* const names[count]{"Rectangle", "Diamond", "Ellipse"};
 
   kugushev::point_t pivot{};
   double factor = 0.0;
@@ -50,18 +61,18 @@ int main()
       std::cout << "\nПосле масштабирования\n";
     }
 
-    double totalArea = 0.0;
+    double total_area = 0.0;
     const kugushev::rectangle_t first = shapes[0]->getFrameRect();
-    double left = first.pos.x - first.width / 2.0;
-    double right = first.pos.x + first.width / 2.0;
-    double bottom = first.pos.y - first.height / 2.0;
-    double top = first.pos.y + first.height / 2.0;
+    double left = first.pos.x - first.width * half;
+    double right = first.pos.x + first.width * half;
+    double bottom = first.pos.y - first.height * half;
+    double top = first.pos.y + first.height * half;
 
     for (int i = 0; i < count; ++i)
     {
       const double area = shapes[i]->getArea();
       const kugushev::rectangle_t frame = shapes[i]->getFrameRect();
-      totalArea += area;
+      total_area += area;
 
       std::cout << names[i] << '\n'
                 << "Площадь: " << area << '\n'
@@ -69,15 +80,15 @@ int main()
                 << "Ширина: " << frame.width << '\n'
                 << "Высота: " << frame.height << '\n';
 
-      left = std::min(left, frame.pos.x - frame.width / 2.0);
-      right = std::max(right, frame.pos.x + frame.width / 2.0);
-      bottom = std::min(bottom, frame.pos.y - frame.height / 2.0);
-      top = std::max(top, frame.pos.y + frame.height / 2.0);
+      left = std::min(left, frame.pos.x - frame.width * half);
+      right = std::max(right, frame.pos.x + frame.width * half);
+      bottom = std::min(bottom, frame.pos.y - frame.height * half);
+      top = std::max(top, frame.pos.y + frame.height * half);
     }
 
-    std::cout << "Суммарная площадь: " << totalArea << '\n'
+    std::cout << "Суммарная площадь: " << total_area << '\n'
               << "Общая рамка\n"
-              << "Центр: (" << (left + right) / 2.0 << ", " << (bottom + top) / 2.0 << ")\n"
+              << "Центр: (" << (left + right) * half << ", " << (bottom + top) * half << ")\n"
               << "Ширина: " << right - left << '\n'
               << "Высота: " << top - bottom << '\n';
   }

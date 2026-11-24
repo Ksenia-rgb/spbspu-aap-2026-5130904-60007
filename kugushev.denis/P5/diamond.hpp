@@ -8,7 +8,7 @@ namespace kugushev
   class Diamond: public Shape
   {
   public:
-    Diamond(point_t centr, double Xdiag, double Ydiag);
+    Diamond(point_t centr, double xdiag, double ydiag);
 
     double getArea() const override;
     rectangle_t getFrameRect() const override;
@@ -18,8 +18,8 @@ namespace kugushev
 
   private:
     point_t centr_;
-    double Xdiag_;
-    double Ydiag_;
+    double xdiag_;
+    double ydiag_;
   };
 }
 

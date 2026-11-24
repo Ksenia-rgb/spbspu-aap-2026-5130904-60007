@@ -2,20 +2,21 @@
 
 namespace kugushev
 {
-  Diamond::Diamond(point_t centr, double Xdiag, double Ydiag):
+  Diamond::Diamond(point_t centr, double xdiag, double ydiag):
     centr_{centr},
-    Xdiag_{Xdiag},
-    Ydiag_{Ydiag}
+    xdiag_{xdiag},
+    ydiag_{ydiag}
   {}
 
   double Diamond::getArea() const
   {
-    return Xdiag_ * Ydiag_ / 2.0;
+    constexpr double area_divisor = 2.0;
+    return xdiag_ * ydiag_ / area_divisor;
   }
 
   rectangle_t Diamond::getFrameRect() const
   {
-    return {Xdiag_, Ydiag_, centr_};
+    return {xdiag_, ydiag_, centr_};
   }
 
   void Diamond::move(point_t point)
@@ -31,7 +32,7 @@ namespace kugushev
 
   void Diamond::scale(double factor)
   {
-    Xdiag_ *= factor;
-    Ydiag_ *= factor;
+    xdiag_ *= factor;
+    ydiag_ *= factor;
   }
 }

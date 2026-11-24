@@ -4,12 +4,12 @@
 
 namespace kugushev
 {
-  Ellipse::Ellipse(point_t centr, double radiusX, double radiusY):
+  Ellipse::Ellipse(point_t centr, double radius_x, double radius_y):
     centr_{centr},
-    radiusX_{radiusX},
-    radiusY_{radiusY}
+    radius_x_{radius_x},
+    radius_y_{radius_y}
   {
-    if (radiusX <= 0.0 || radiusY <= 0.0)
+    if (radius_x <= 0.0 || radius_y <= 0.0)
     {
       throw std::invalid_argument("Ellipse radii must be positive");
     }
@@ -18,12 +18,13 @@ namespace kugushev
   double Ellipse::getArea() const
   {
     constexpr double pi = 3.141592653589793;
-    return pi * radiusX_ * radiusY_;
+    return pi * radius_x_ * radius_y_;
   }
 
   rectangle_t Ellipse::getFrameRect() const
   {
-    return {2.0 * radiusX_, 2.0 * radiusY_, centr_};
+    constexpr double diameter_factor = 2.0;
+    return {diameter_factor * radius_x_, diameter_factor * radius_y_, centr_};
   }
 
   void Ellipse::move(point_t point)
@@ -39,7 +40,7 @@ namespace kugushev
 
   void Ellipse::scale(double factor)
   {
-    radiusX_ *= factor;
-    radiusY_ *= factor;
+    radius_x_ *= factor;
+    radius_y_ *= factor;
   }
 }
