@@ -42,6 +42,7 @@ int main()
   int length = 0;
   char* buffer = new char[capacity];
   char c = 0;
+  
   while (std::cin.get(c) && c != '\n')
   {
     if (length + 1 >= capacity)
@@ -59,6 +60,14 @@ int main()
     length++;
   }
   buffer[length] = '\0';
+
+  if (length == 0)
+  {
+    std::cerr << "error\n";
+    delete[] buffer;
+    return 1;
+  }
+
   const int result = brattsev::countDistinctLatin(buffer);
   std::cout << result << "\n";
   delete[] buffer;
