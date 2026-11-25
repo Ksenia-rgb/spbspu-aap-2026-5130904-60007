@@ -8,6 +8,10 @@ namespace chinikov
 {
   char* inputString(size_t& buffer, char*& str)
   {
+    if (!str || buffer == 0)
+    {
+      return nullptr;
+    }
     char ch = 0;
     size_t count = 0;
     while (std::cin.get(ch) && ch != '\n')
@@ -45,6 +49,10 @@ namespace chinikov
 
   size_t stringSize(const char* string)
   {
+    if (!string)
+    {
+      return 0;
+    }
     size_t size = 0;
     while (string[size] != '\0')
     {
@@ -55,6 +63,10 @@ namespace chinikov
 
   char* formatString(const char* first_string, const char* second_string, char* new_string)
   {
+    if (!first_string || !second_string || !new_string)
+    {
+      return nullptr;
+    }
     constexpr size_t alphabet_size = 26;
     bool present[alphabet_size] = {false};
 
