@@ -1,5 +1,5 @@
-#pragma once
-#include "shape.hpp"
+#ifndef SHIBAEV_RECTANGLE_HPP
+#define SHIBAEV_RECTANGLE_HPP
 
 namespace shibaev
 {
@@ -19,3 +19,5 @@ namespace shibaev
     point_t pos;
   };
 }
+
+#endif

@@ -1,4 +1,5 @@
-#pragma once
+#ifndef SHIBAEV_BASE_TYPES_HPP
+#define SHIBAEV_BASE_TYPES_HPP
 
 namespace shibaev
 {
@@ -15,3 +16,5 @@ namespace shibaev
     point_t pos;
   };
 }
+
+#endif

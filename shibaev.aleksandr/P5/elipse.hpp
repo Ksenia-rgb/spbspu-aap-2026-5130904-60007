@@ -1,4 +1,6 @@
-#pragma once
+#ifndef SHIBAEV_ELIPSE_HPP
+#define SHIBAEV_ELIPSE_HPP
+
 #include "shape.hpp"
 
 namespace shibaev
@@ -19,3 +21,5 @@ namespace shibaev
     point_t pos;
   };
 }
+
+#endif

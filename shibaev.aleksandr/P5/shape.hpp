@@ -1,4 +1,5 @@
-#pragma once
+#ifndef SHIBAEV_SHAPE_HPP
+#define SHIBAEV_SHAPE_HPP
 
 #include "base-types.hpp"
 namespace shibaev
@@ -14,3 +15,5 @@ namespace shibaev
     virtual ~Shape() = default;
   };
 }
+
+#endif
