@@ -1,5 +1,5 @@
-#ifndef SHIBAEV_DIAMOND_HPP
-#define SHIBAEV_DIAMOND_HPP
+#ifndef DIAMOND_HPP
+#define DIAMOND_HPP
 
 #include "shape.hpp"
 
@@ -16,9 +16,9 @@ namespace shibaev
     void scale(double) override;
     ~Diamond() override = default;
   private:
-    double diagonal1;
-    double diagonal2;
-    point_t pos;
+    double diagonal1_;
+    double diagonal2_;
+    point_t pos_;
   };
 }
 

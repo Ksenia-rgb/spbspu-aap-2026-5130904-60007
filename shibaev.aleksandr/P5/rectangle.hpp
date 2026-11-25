@@ -1,5 +1,5 @@
-#ifndef SHIBAEV_RECTANGLE_HPP
-#define SHIBAEV_RECTANGLE_HPP
+#ifndef RECTANGLE_HPP
+#define RECTANGLE_HPP
 
 #include "shape.hpp"
 
@@ -16,9 +16,9 @@ namespace shibaev
     void scale(double) override;
     ~Rectangle() override = default;
   private:
-    double width;
-    double height;
-    point_t pos;
+    double width_;
+    double height_;
+    point_t pos_;
   };
 }
 

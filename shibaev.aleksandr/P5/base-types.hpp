@@ -1,5 +1,5 @@
-#ifndef SHIBAEV_BASE_TYPES_HPP
-#define SHIBAEV_BASE_TYPES_HPP
+#ifndef BASE_TYPES_HPP
+#define BASE_TYPES_HPP
 
 namespace shibaev
 {

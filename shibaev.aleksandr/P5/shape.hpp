@@ -1,5 +1,5 @@
-#ifndef SHIBAEV_SHAPE_HPP
-#define SHIBAEV_SHAPE_HPP
+#ifndef SHAPE_HPP
+#define SHAPE_HPP
 
 #include "base-types.hpp"
 

@@ -4,9 +4,9 @@
 namespace shibaev
 {
   Rectangle::Rectangle(double width, double height, point_t pos):
-    width(width),
-    height(height),
-    pos(pos)
+    width_(width),
+    height_(height),
+    pos_(pos)
   {
     if (width <= 0 || height <= 0)
     {
@@ -16,25 +16,25 @@ namespace shibaev
 
   double Rectangle::getArea() const
   {
-    return width * height;
+    return width_ * height_;
   }
 
   rectangle_t Rectangle::getFrameRect() const
   {
-    rectangle_t frame = {width, height, pos};
+    const rectangle_t frame = {width_, height_, pos_};
     return frame;
   }
 
   void Rectangle::move(double x, double y)
   {
-    pos.x += x;
-    pos.y += y;
+    pos_.x += x;
+    pos_.y += y;
   }
 
   void Rectangle::move(point_t p)
   {
-    pos.x = p.x;
-    pos.y = p.y;
+    pos_.x = p.x;
+    pos_.y = p.y;
   }
 
   void Rectangle::scale(double s)
@@ -43,7 +43,7 @@ namespace shibaev
     {
       throw std::invalid_argument("Scale factor must be positive");
     }
-    width *= s;
-    height *= s;
+    width_ *= s;
+    height_ *= s;
   }
 }
