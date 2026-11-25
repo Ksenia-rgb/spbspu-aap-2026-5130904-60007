@@ -67,6 +67,11 @@ int main()
     std::cerr << "Error: cannot allocate memory for input string\n";
     return 1;
   }
+  if (source[0] == '\0' && std::cin.eof()) {
+    delete[] source;
+    std::cerr << "Error: empty input\n";
+    return 1;
+  }
 
   char *const result = new (std::nothrow) char[std::strlen(source) + 1];
   if (result == nullptr) {
