@@ -8,7 +8,7 @@ const int NUM_STATIC = 1;
 const int NUM_DYNAMIC = 2;
 const std::size_t MAX_NUMBER_OF_ELEMENTS = 10000;
 bool readMatrix(std::ifstream &file, std::size_t rows, std::size_t cols, int * const matrix)
-{ // NOLINT
+{
   for (std::size_t i = 0; i < rows; i++)
   {
     for (std::size_t j = 0; j < cols; j++)
@@ -35,11 +35,13 @@ void smoothMatrix(const int *matrix, std::size_t rows, std::size_t cols, double 
         for (int dj = -1; dj <= 1; dj++)
         {
           if (di == 0 && dj == 0)
+          {
             continue;
+          }
 
-          const int ni = static_cast <int> (i) + di;
-          const int nj = static_cast <int> (j) + dj;
-          if (ni >= 0 && ni < static_cast <int> (rows) && nj >= 0 && nj < static_cast <int> (cols))
+          const int ni = static_cast < int > (i) + di;
+          const int nj = static_cast < int > (j) + dj;
+          if (ni >= 0 && ni < static_cast < int > (rows) && nj >= 0 && nj < static_cast < int > (cols))
           {
             sum += matrix[ni * cols + nj];
             count++;
