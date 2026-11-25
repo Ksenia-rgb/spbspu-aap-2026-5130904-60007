@@ -2,6 +2,7 @@
 #define SHIBAEV_SHAPE_HPP
 
 #include "base-types.hpp"
+
 namespace shibaev
 {
   class Shape

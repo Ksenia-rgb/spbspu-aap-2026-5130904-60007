@@ -1,7 +1,9 @@
 #ifndef SHIBAEV_RECTANGLE_HPP
 #define SHIBAEV_RECTANGLE_HPP
 
-namespace shibaev
+#include "shape.hpp"
+
+namespace shi
 {
   class Rectangle: public Shape
   {
