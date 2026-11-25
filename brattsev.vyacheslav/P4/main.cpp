@@ -32,14 +32,12 @@ int main()
     length++;
   }
   buffer[length] = '\0';
-  
   if (length == 0)
   {
     std::cerr << "error\n";
     delete[] buffer;
     return 1;
   }
-
   const int result = brattsev::countDistinctLatin(buffer);
   std::cout << result << "\n";
   delete[] buffer;
