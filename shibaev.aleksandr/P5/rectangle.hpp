@@ -3,7 +3,7 @@
 
 #include "shape.hpp"
 
-namespace shi
+namespace shibaev
 {
   class Rectangle: public Shape
   {
