@@ -39,7 +39,7 @@ int main()
     delete[] buffer;
     return 1;
   }
-  
+
   const int result = brattsev::countDistinctLatin(buffer);
   std::cout << result << "\n";
   delete[] buffer;
