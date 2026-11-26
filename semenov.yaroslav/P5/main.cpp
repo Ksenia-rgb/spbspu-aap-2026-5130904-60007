@@ -61,6 +61,9 @@ int main()
   semenov::Ellipse ellipse({2, 3}, 4, 2);
   semenov::Shape* figures[] = {&rectangle, &diamond, &ellipse};
 
+  std::cout << "Before scaling:\n";
+  semenov::printFigures(figures);
+
   semenov::point_t origin{};
   double factor = 0;
   if (!(std::cin >> origin.x >> origin.y >> factor) || !std::isfinite(origin.x) || !std::isfinite(origin.y)
@@ -69,8 +72,6 @@ int main()
     return 1;
   }
 
-  std::cout << "Before scaling:\n";
-  semenov::printFigures(figures);
   semenov::scaleFigures(figures, origin, factor);
   std::cout << "After scaling:\n";
   semenov::printFigures(figures);
