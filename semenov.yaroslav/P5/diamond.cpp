@@ -2,18 +2,20 @@
 
 #include <stdexcept>
 
-namespace semenov {
-  Diamond::Diamond(point_t center, double diagonalX, double diagonalY):
-    frame_{diagonalX, diagonalY, center}
+namespace semenov
+{
+  Diamond::Diamond(point_t center, double diagonal_x, double diagonal_y):
+    frame_{diagonal_x, diagonal_y, center}
   {
-    if (!(diagonalX > 0.0 && diagonalY > 0.0)) {
+    if (!(diagonal_x > 0.0 && diagonal_y > 0.0))
+    {
       throw std::invalid_argument("Diamond diagonals must be positive.");
     }
   }
 
   double Diamond::getArea() const
   {
-    return (frame_.width * 0.5) * frame_.height;
+    return frame_.width * frame_.height / 2;
   }
 
   rectangle_t Diamond::getFrameRect() const
@@ -34,7 +36,8 @@ namespace semenov {
 
   void Diamond::scale(double k)
   {
-    if (!(k > 0.0)) {
+    if (!(k > 0.0))
+    {
       throw std::invalid_argument("Scale factor must be positive.");
     }
     frame_.width *= k;

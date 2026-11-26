@@ -1,11 +1,13 @@
-#ifndef SEMENOV_P5_ELLIPSE_HPP
-#define SEMENOV_P5_ELLIPSE_HPP
+#ifndef ELLIPSE_HPP
+#define ELLIPSE_HPP
 
 #include "base-types.hpp"
 #include "shape.hpp"
 
-namespace semenov {
-  class Ellipse: public Shape {
+namespace semenov
+{
+  class Ellipse: public Shape
+  {
   public:
     Ellipse(point_t center, double a, double b);
 

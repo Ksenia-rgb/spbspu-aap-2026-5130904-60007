@@ -1,12 +1,14 @@
-#ifndef SEMENOV_P5_DIAMOND_HPP
-#define SEMENOV_P5_DIAMOND_HPP
+#ifndef DIAMOND_HPP
+#define DIAMOND_HPP
 
 #include "shape.hpp"
 
-namespace semenov {
-  class Diamond: public Shape {
+namespace semenov
+{
+  class Diamond: public Shape
+  {
   public:
-    Diamond(point_t center, double diagonalX, double diagonalY);
+    Diamond(point_t center, double diagonal_x, double diagonal_y);
 
     double getArea() const override;
     rectangle_t getFrameRect() const override;

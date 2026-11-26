@@ -1,10 +1,12 @@
-#ifndef SEMENOV_P5_SHAPE_HPP
-#define SEMENOV_P5_SHAPE_HPP
+#ifndef SHAPE_HPP
+#define SHAPE_HPP
 
 #include "base-types.hpp"
 
-namespace semenov {
-  class Shape {
+namespace semenov
+{
+  class Shape
+  {
   public:
     virtual ~Shape() = default;
 

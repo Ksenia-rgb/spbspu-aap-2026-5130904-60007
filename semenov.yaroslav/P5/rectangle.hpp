@@ -1,5 +1,5 @@
-#ifndef SEMENOV_P5_RECTANGLE_HPP
-#define SEMENOV_P5_RECTANGLE_HPP
+#ifndef RECTANGLE_HPP
+#define RECTANGLE_HPP
 
 #include "shape.hpp"
 

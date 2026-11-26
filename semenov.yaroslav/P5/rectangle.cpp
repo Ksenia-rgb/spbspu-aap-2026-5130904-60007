@@ -2,11 +2,13 @@
 
 #include <stdexcept>
 
-namespace semenov {
+namespace semenov
+{
   Rectangle::Rectangle(point_t center, double width, double height):
     frame_{width, height, center}
   {
-    if (!(width > 0.0 && height > 0.0)) {
+    if (!(width > 0.0 && height > 0.0))
+    {
       throw std::invalid_argument("Rectangle dimensions must be positive.");
     }
   }
@@ -34,7 +36,8 @@ namespace semenov {
 
   void Rectangle::scale(double k)
   {
-    if (!(k > 0.0)) {
+    if (!(k > 0.0))
+    {
       throw std::invalid_argument("Scale factor must be positive.");
     }
     frame_.width *= k;

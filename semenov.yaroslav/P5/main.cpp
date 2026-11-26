@@ -9,7 +9,8 @@
 #include <cstddef>
 #include <iostream>
 
-namespace semenov {
+namespace semenov
+{
   void printFrame(const rectangle_t& frame)
   {
     std::cout << frame.width << ' ' << frame.height << ' ' << frame.pos.x << ' ' << frame.pos.y << '\n';
@@ -23,14 +24,15 @@ namespace semenov {
     double right = first.pos.x + first.width / 2;
     double bottom = first.pos.y - first.height / 2;
     double top = first.pos.y + first.height / 2;
-    double totalArea = 0;
+    double total_area = 0;
 
-    for (const Shape* figure : figures) {
+    for (const Shape* const figure : figures)
+    {
       const double area = figure->getArea();
       const auto frame = figure->getFrameRect();
       std::cout << area << '\n';
       printFrame(frame);
-      totalArea += area;
+      total_area += area;
 
       left = std::min(left, frame.pos.x - frame.width / 2);
       right = std::max(right, frame.pos.x + frame.width / 2);
@@ -38,7 +40,7 @@ namespace semenov {
       top = std::max(top, frame.pos.y + frame.height / 2);
     }
 
-    std::cout << "Total Area: " << totalArea << '\n';
+    std::cout << "Total Area: " << total_area << '\n';
     std::cout << "Total Frame: ";
     printFrame({right - left, top - bottom, {left / 2 + right / 2, bottom / 2 + top / 2}});
   }
@@ -46,7 +48,8 @@ namespace semenov {
   template< std::size_t N >
   void scaleFigures(Shape* const (&figures)[N], point_t origin, double factor)
   {
-    for (Shape* figure : figures) {
+    for (Shape* const figure : figures)
+    {
       const auto center = figure->getFrameRect().pos;
       figure->move({origin.x + (center.x - origin.x) * factor, origin.y + (center.y - origin.y) * factor});
       figure->scale(factor);
@@ -56,10 +59,12 @@ namespace semenov {
 
 int main()
 {
-  semenov::Rectangle rectangle({0, 0}, 4, 5);
-  semenov::Diamond diamond({1, 1}, 6, 4);
+  constexpr double RECTANGLE_HEIGHT = 5;
+  constexpr double DIAMOND_WIDTH = 6;
+  semenov::Rectangle rectangle({0, 0}, 4, RECTANGLE_HEIGHT);
+  semenov::Diamond diamond({1, 1}, DIAMOND_WIDTH, 4);
   semenov::Ellipse ellipse({2, 3}, 4, 2);
-  semenov::Shape* figures[] = {&rectangle, &diamond, &ellipse};
+  semenov::Shape* const figures[] = {&rectangle, &diamond, &ellipse};
 
   std::cout << "Before scaling:\n";
   semenov::printFigures(figures);
@@ -67,7 +72,8 @@ int main()
   semenov::point_t origin{};
   double factor = 0;
   if (!(std::cin >> origin.x >> origin.y >> factor) || !std::isfinite(origin.x) || !std::isfinite(origin.y)
-      || !std::isfinite(factor) || factor <= 0) {
+      || !std::isfinite(factor) || factor <= 0)
+  {
     std::cerr << "Expected two finite coordinates and a positive finite scale factor.\n";
     return 1;
   }
