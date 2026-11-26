@@ -1,4 +1,5 @@
-#pragma once
+#ifndef SEMENOV_P5_DIAMOND_HPP
+#define SEMENOV_P5_DIAMOND_HPP
 
 #include "shape.hpp"
 
@@ -17,3 +18,5 @@ namespace semenov {
     rectangle_t frame_;
   };
 }
+
+#endif

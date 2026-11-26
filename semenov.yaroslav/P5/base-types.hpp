@@ -1,4 +1,5 @@
-#pragma once
+#ifndef SEMENOV_P5_BASE_TYPES_HPP
+#define SEMENOV_P5_BASE_TYPES_HPP
 
 namespace semenov {
   struct point_t {
@@ -12,3 +13,4 @@ namespace semenov {
   };
 }
 
+#endif

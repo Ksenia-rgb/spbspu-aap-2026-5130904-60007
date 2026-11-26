@@ -1,4 +1,5 @@
-#pragma once
+#ifndef SEMENOV_P5_ELLIPSE_HPP
+#define SEMENOV_P5_ELLIPSE_HPP
 
 #include "base-types.hpp"
 #include "shape.hpp"
@@ -22,3 +23,4 @@ namespace semenov {
 
 }
 
+#endif

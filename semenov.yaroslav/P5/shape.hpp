@@ -1,4 +1,5 @@
-#pragma once
+#ifndef SEMENOV_P5_SHAPE_HPP
+#define SEMENOV_P5_SHAPE_HPP
 
 #include "base-types.hpp"
 
@@ -15,3 +16,4 @@ namespace semenov {
   };
 }
 
+#endif
