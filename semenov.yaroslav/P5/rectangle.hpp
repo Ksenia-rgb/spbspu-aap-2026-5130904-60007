@@ -3,8 +3,10 @@
 
 #include "shape.hpp"
 
-namespace semenov {
-  class Rectangle: public Shape {
+namespace semenov
+{
+  class Rectangle: public Shape
+  {
   public:
     Rectangle(point_t center, double width, double height);
 
