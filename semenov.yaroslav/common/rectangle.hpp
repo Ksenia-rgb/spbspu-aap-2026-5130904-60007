@@ -10,6 +10,7 @@ namespace semenov
   public:
     Rectangle(point_t center, double width, double height);
 
+    Shape* clone() const override;
     double getArea() const override;
     rectangle_t getFrameRect() const override;
     void move(point_t pos) override;

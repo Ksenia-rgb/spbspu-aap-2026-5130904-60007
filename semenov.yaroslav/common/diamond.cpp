@@ -13,6 +13,11 @@ namespace semenov
     }
   }
 
+  Shape* Diamond::clone() const
+  {
+    return new Diamond(*this);
+  }
+
   double Diamond::getArea() const
   {
     return frame_.width * frame_.height / 2;
