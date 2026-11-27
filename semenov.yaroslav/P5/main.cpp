@@ -1,19 +1,19 @@
-#include <Ellipse.hpp>
-#include <diamond.hpp>
-#include <rectangle.hpp>
-#include <scaling-demo.hpp>
+#include "../common/Ellipse.hpp"
+#include "../common/diamond.hpp"
+#include "../common/rectangle.hpp"
+#include "../common/scaling-demo.hpp"
 
 namespace semenov
 {
-  void printFigures(Shape* const* figures, std::size_t size)
+  void printFigures(Shape* const* const figures, std::size_t size)
   {
-    double total_area = 0;
+    double sum = 0;
     Bounds bounds = getBounds(figures[0]->getFrameRect());
     for (std::size_t i = 0; i < size; ++i)
     {
-      printFigure(*figures[i], total_area, bounds);
+      printFigure(*figures[i], sum, bounds);
     }
-    printTotal(total_area, bounds);
+    printTotal(sum, bounds);
   }
 }
 
@@ -31,13 +31,14 @@ int main()
 
   semenov::point_t origin{};
   double factor = 0;
-  if (!semenov::readScale(origin, factor))
+  std::cin >> origin.x >> origin.y >> factor;
+  if (!std::cin || !semenov::validScale(origin, factor))
   {
     std::cerr << "Expected two finite coordinates and a positive finite scale factor.\n";
     return 1;
   }
 
-  for (semenov::Shape* figure : figures)
+  for (semenov::Shape* const figure : figures)
   {
     semenov::scaleFigure(*figure, origin, factor);
   }

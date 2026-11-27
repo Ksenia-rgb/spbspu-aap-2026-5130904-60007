@@ -2,10 +2,12 @@
 #define COMPOSITE_SHAPE_HPP
 
 #include <cstddef>
-#include <shape.hpp>
+#include "../common/shape.hpp"
 
-namespace semenov {
-  class CompositeShape {
+namespace semenov
+{
+  class CompositeShape
+  {
   public:
     CompositeShape() noexcept = default;
     CompositeShape(const CompositeShape& other);
@@ -18,18 +20,15 @@ namespace semenov {
     void append(const Shape& figure);
     void add(std::size_t index, const Shape& figure);
 
-    // first() and last() throw std::out_of_range when empty.
     Shape& first();
     const Shape& first() const;
     Shape& last();
     const Shape& last() const;
     Shape& at(std::size_t index);
     const Shape& at(std::size_t index) const;
-    // The caller must ensure index < size().
     Shape& get(std::size_t index) noexcept;
     const Shape& get(std::size_t index) const noexcept;
 
-    // Invalid indices and drops from an empty object throw std::out_of_range.
     void remove(std::size_t index);
     void dropFirst();
     void dropLast();

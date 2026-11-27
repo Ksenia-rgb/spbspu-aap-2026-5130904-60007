@@ -8,7 +8,7 @@ namespace semenov
   class Diamond: public Shape
   {
   public:
-    Diamond(point_t center, double diagonal_x, double diagonal_y);
+    Diamond(point_t center, double width, double height);
 
     Shape* clone() const override;
     double getArea() const override;

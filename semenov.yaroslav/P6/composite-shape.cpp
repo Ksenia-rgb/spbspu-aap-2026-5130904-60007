@@ -3,13 +3,16 @@
 #include <stdexcept>
 #include <utility>
 
-namespace semenov {
+namespace semenov
+{
   CompositeShape::CompositeShape(const CompositeShape& other):
     CompositeShape()
   {
-    if (!other.empty()) {
+    if (!other.empty())
+    {
       figures_ = new Shape*[other.size_];
-      for (; size_ < other.size_; ++size_) {
+      for (; size_ < other.size_; ++size_)
+      {
         figures_[size_] = other.get(size_).clone();
       }
     }
@@ -25,16 +28,19 @@ namespace semenov {
 
   CompositeShape& CompositeShape::operator=(const CompositeShape& other)
   {
-    if (this != &other) {
+    if (this != &other)
+    {
       CompositeShape copy(other);
-      *this = std::move(copy);
+      std::swap(figures_, copy.figures_);
+      std::swap(size_, copy.size_);
     }
     return *this;
   }
 
   CompositeShape& CompositeShape::operator=(CompositeShape&& other) noexcept
   {
-    if (this != &other) {
+    if (this != &other)
+    {
       clear();
       figures_ = other.figures_;
       size_ = other.size_;
@@ -61,21 +67,27 @@ namespace semenov {
 
   void CompositeShape::add(std::size_t index, const Shape& figure)
   {
-    if (index > size_) {
+    if (index > size_)
+    {
       throw std::out_of_range("Invalid insertion index");
     }
 
-    Shape** next = new Shape*[size_ + 1];
-    try {
+    Shape** const next = new Shape*[size_ + 1];
+    try
+    {
       next[index] = figure.clone();
-    } catch (...) {
+    }
+    catch (...)
+    {
       delete[] next;
       throw;
     }
-    for (std::size_t i = 0; i < index; ++i) {
+    for (std::size_t i = 0; i < index; ++i)
+    {
       next[i] = figures_[i];
     }
-    for (std::size_t i = index; i < size_; ++i) {
+    for (std::size_t i = index; i < size_; ++i)
+    {
       next[i + 1] = figures_[i];
     }
 
@@ -130,7 +142,8 @@ namespace semenov {
   {
     checkIndex(index);
     delete figures_[index];
-    for (std::size_t i = index + 1; i < size_; ++i) {
+    for (std::size_t i = index + 1; i < size_; ++i)
+    {
       figures_[i - 1] = figures_[i];
     }
     figures_[--size_] = nullptr;
@@ -148,7 +161,8 @@ namespace semenov {
 
   void CompositeShape::clear() noexcept
   {
-    for (std::size_t i = 0; i < size_; ++i) {
+    for (std::size_t i = 0; i < size_; ++i)
+    {
       delete figures_[i];
     }
     delete[] figures_;
@@ -168,7 +182,8 @@ namespace semenov {
 
   void CompositeShape::checkIndex(std::size_t index) const
   {
-    if (index >= size_) {
+    if (index >= size_)
+    {
       throw std::out_of_range("Invalid figure index");
     }
   }
