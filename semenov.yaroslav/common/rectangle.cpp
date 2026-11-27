@@ -13,6 +13,11 @@ namespace semenov
     }
   }
 
+  Shape* Rectangle::clone() const
+  {
+    return new Rectangle(*this);
+  }
+
   double Rectangle::getArea() const
   {
     return frame_.width * frame_.height;

@@ -14,6 +14,11 @@ namespace semenov
     }
   }
 
+  Shape* Ellipse::clone() const
+  {
+    return new Ellipse(*this);
+  }
+
   double Ellipse::getArea() const
   {
     constexpr double PI = 3.141592653589793;

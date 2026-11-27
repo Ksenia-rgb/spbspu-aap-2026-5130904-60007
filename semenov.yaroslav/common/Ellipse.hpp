@@ -1,15 +1,17 @@
-#ifndef DIAMOND_HPP
-#define DIAMOND_HPP
+#ifndef ELLIPSE_HPP
+#define ELLIPSE_HPP
 
+#include "base-types.hpp"
 #include "shape.hpp"
 
 namespace semenov
 {
-  class Diamond: public Shape
+  class Ellipse: public Shape
   {
   public:
-    Diamond(point_t center, double diagonal_x, double diagonal_y);
+    Ellipse(point_t center, double a, double b);
 
+    Shape* clone() const override;
     double getArea() const override;
     rectangle_t getFrameRect() const override;
     void move(point_t pos) override;
@@ -17,8 +19,11 @@ namespace semenov
     void scale(double k) override;
 
   private:
-    rectangle_t frame_;
+    point_t center_;
+    double a_;
+    double b_;
   };
+
 }
 
 #endif

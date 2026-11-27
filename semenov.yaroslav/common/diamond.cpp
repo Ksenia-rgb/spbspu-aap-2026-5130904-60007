@@ -4,13 +4,18 @@
 
 namespace semenov
 {
-  Diamond::Diamond(point_t center, double diagonal_x, double diagonal_y):
-    frame_{diagonal_x, diagonal_y, center}
+  Diamond::Diamond(point_t center, double width, double height):
+    frame_{width, height, center}
   {
-    if (!(diagonal_x > 0.0 && diagonal_y > 0.0))
+    if (!(width > 0.0 && height > 0.0))
     {
       throw std::invalid_argument("Diamond diagonals must be positive.");
     }
+  }
+
+  Shape* Diamond::clone() const
+  {
+    return new Diamond(*this);
   }
 
   double Diamond::getArea() const
