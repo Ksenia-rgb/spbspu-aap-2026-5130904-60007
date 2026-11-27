@@ -130,6 +130,9 @@ int main()
     shapes[1] = new geom::Diamond({diamond_x, diamond_y}, diamond_diag_x, diamond_diag_y);
     shapes[2] = new geom::Ellipse({ellipse_x, ellipse_y}, ellipse_radius_x, ellipse_radius_y);
 
+    std::cout << "Before scaling:\n";
+    geom::printShapesInfo(std::cout, shapes, shapes_count);
+
     double scale_x = 0.0;
     double scale_y = 0.0;
     double factor = 0.0;
@@ -146,9 +149,6 @@ int main()
       geom::freeShapes(shapes, shapes_count);
       return 1;
     }
-
-    std::cout << "Before scaling:\n";
-    geom::printShapesInfo(std::cout, shapes, shapes_count);
 
     const geom::point_t scale_center = {scale_x, scale_y};
     geom::scaleShapes(shapes, shapes_count, scale_center, factor);
