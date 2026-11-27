@@ -1,17 +1,15 @@
-
 #include "rectangle.hpp"
 #include "square.hpp"
 #include "ring.hpp"
 
-#include <iostream>
-#include <iomanip>
 #include <cmath>
+#include <iomanip>
+#include <iostream>
 #include <stdexcept>
 
-// Affichage des informations d'une figure
 void printShape(const Shape& shape)
 {
-    rectangle_t frame = shape.getFrameRect();
+    const rectangle_t frame = shape.getFrameRect();
 
     std::cout << "Area: " << shape.getArea() << '\n';
 
@@ -23,10 +21,9 @@ void printShape(const Shape& shape)
               << frame.pos.y << ")\n";
 }
 
-// Affichage de toutes les figures
 void printAll(Shape* shapes[], int count)
 {
-    double totalArea = 0.0;
+    double total_area = 0.0;
 
     for (int i = 0; i < count; ++i)
     {
@@ -34,55 +31,68 @@ void printAll(Shape* shapes[], int count)
 
         printShape(*shapes[i]);
 
-        totalArea += shapes[i]->getArea();
+        total_area += shapes[i]->getArea();
     }
 
-    std::cout << "\nTotal area: " << totalArea << '\n';
+    std::cout << "\nTotal area: " << total_area << '\n';
 
-    // Calcul du rectangle englobant de toutes les figures
-    rectangle_t firstFrame = shapes[0]->getFrameRect();
+    const rectangle_t first_frame = shapes[0]->getFrameRect();
 
-    double minX = firstFrame.pos.x - firstFrame.width / 2.0;
-    double maxX = firstFrame.pos.x + firstFrame.width / 2.0;
-    double minY = firstFrame.pos.y - firstFrame.height / 2.0;
-    double maxY = firstFrame.pos.y + firstFrame.height / 2.0;
+    double min_x = first_frame.pos.x - first_frame.width / 2.0;
+    double max_x = first_frame.pos.x + first_frame.width / 2.0;
+    double min_y = first_frame.pos.y - first_frame.height / 2.0;
+    double max_y = first_frame.pos.y + first_frame.height / 2.0;
 
     for (int i = 1; i < count; ++i)
     {
-        rectangle_t frame = shapes[i]->getFrameRect();
+        const rectangle_t frame = shapes[i]->getFrameRect();
 
-        double left = frame.pos.x - frame.width / 2.0;
-        double right = frame.pos.x + frame.width / 2.0;
-        double bottom = frame.pos.y - frame.height / 2.0;
-        double top = frame.pos.y + frame.height / 2.0;
+        const double left = frame.pos.x - frame.width / 2.0;
+        const double right = frame.pos.x + frame.width / 2.0;
+        const double bottom = frame.pos.y - frame.height / 2.0;
+        const double top = frame.pos.y + frame.height / 2.0;
 
-        if (left < minX) minX = left;
-        if (right > maxX) maxX = right;
-        if (bottom < minY) minY = bottom;
-        if (top > maxY) maxY = top;
+        if (left < min_x)
+        {
+            min_x = left;
+        }
+
+        if (right > max_x)
+        {
+            max_x = right;
+        }
+
+        if (bottom < min_y)
+        {
+            min_y = bottom;
+        }
+
+        if (top > max_y)
+        {
+            max_y = top;
+        }
     }
 
     std::cout << "\nOverall frame rectangle:\n";
-    std::cout << "  Width: " << maxX - minX << '\n';
-    std::cout << "  Height: " << maxY - minY << '\n';
+    std::cout << "  Width: " << max_x - min_x << '\n';
+    std::cout << "  Height: " << max_y - min_y << '\n';
     std::cout << "  Center: ("
-              << (minX + maxX) / 2.0 << ", "
-              << (minY + maxY) / 2.0 << ")\n";
+              << (min_x + max_x) / 2.0 << ", "
+              << (min_y + max_y) / 2.0 << ")\n";
 }
 
-// Mise a l'echelle de toutes les figures autour d'un point
 void scaleAll(Shape* shapes[], int count,
-              point_t fixedPoint, double factor)
+              point_t fixed_point, double factor)
 {
     for (int i = 0; i < count; ++i)
     {
-        rectangle_t frame = shapes[i]->getFrameRect();
+        const rectangle_t frame = shapes[i]->getFrameRect();
 
-        double dx = (factor - 1.0) *
-                    (frame.pos.x - fixedPoint.x);
+        const double dx = (factor - 1.0) *
+                          (frame.pos.x - fixed_point.x);
 
-        double dy = (factor - 1.0) *
-                    (frame.pos.y - fixedPoint.y);
+        const double dy = (factor - 1.0) *
+                          (frame.pos.y - fixed_point.y);
 
         shapes[i]->move(dx, dy);
         shapes[i]->scale(factor);
@@ -95,7 +105,6 @@ int main()
     {
         std::cout << std::fixed << std::setprecision(2);
 
-        // Creation des figures
         Rectangle rectangle1(4.0, 2.0, {1.0, 2.0});
         Rectangle rectangle2(6.0, 3.0, {-3.0, 1.0});
 
@@ -105,7 +114,6 @@ int main()
         Ring ring1(5.0, 2.0, {3.0, -2.0});
         Ring ring2(4.0, 1.5, {-5.0, 3.0});
 
-        // Tableau de pointeurs vers Shape
         Shape* shapes[] =
         {
             &rectangle1,
@@ -118,24 +126,21 @@ int main()
 
         const int count = sizeof(shapes) / sizeof(shapes[0]);
 
-        // Affichage avant transformation
         std::cout << "===== BEFORE SCALING =====\n";
 
         printAll(shapes, count);
 
-        // Saisie du point de reference
-        point_t fixedPoint;
+        point_t fixed_point;
 
         std::cout << "\nEnter the fixed point (x y): ";
 
-        if (!(std::cin >> fixedPoint.x >> fixedPoint.y) ||
-            !std::isfinite(fixedPoint.x) ||
-            !std::isfinite(fixedPoint.y))
+        if (!(std::cin >> fixed_point.x >> fixed_point.y) ||
+            !std::isfinite(fixed_point.x) ||
+            !std::isfinite(fixed_point.y))
         {
             throw std::invalid_argument("Invalid point coordinates");
         }
 
-        // Saisie du coefficient
         double factor;
 
         std::cout << "Enter the scaling factor: ";
@@ -147,14 +152,11 @@ int main()
             throw std::invalid_argument("Invalid scaling factor");
         }
 
-        // Transformation des figures
-        scaleAll(shapes, count, fixedPoint, factor);
+        scaleAll(shapes, count, fixed_point, factor);
 
-        // Affichage apres transformation
         std::cout << "\n===== AFTER SCALING =====\n";
 
         printAll(shapes, count);
-
     }
     catch (const std::exception& error)
     {

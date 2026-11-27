@@ -1,4 +1,3 @@
-
 #ifndef SQUARE_HPP
 #define SQUARE_HPP
 
@@ -10,4 +9,4 @@ public:
     Square(double side, point_t position);
 };
 
-#endif
+#endif // SQUARE_HPP

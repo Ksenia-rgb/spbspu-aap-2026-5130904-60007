@@ -1,4 +1,3 @@
-
 #ifndef SHAPE_HPP
 #define SHAPE_HPP
 
@@ -20,4 +19,4 @@ public:
     virtual ~Shape() = default;
 };
 
-#endif
+#endif // SHAPE_HPP

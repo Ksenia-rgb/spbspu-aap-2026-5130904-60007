@@ -1,4 +1,3 @@
-
 #ifndef RECTANGLE_HPP
 #define RECTANGLE_HPP
 
@@ -25,4 +24,4 @@ private:
     point_t position_;
 };
 
-#endif
+#endif // RECTANGLE_HPP

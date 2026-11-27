@@ -1,4 +1,3 @@
-
 #include "ring.hpp"
 
 #include <cmath>
@@ -6,16 +5,17 @@
 
 namespace
 {
-    constexpr double PI = 3.14159265358979323846;
+    constexpr double pi = 3.14159265358979323846;
 }
 
-Ring::Ring(double outerRadius, double innerRadius, point_t position)
-    : outerRadius_(outerRadius),
-      innerRadius_(innerRadius),
+Ring::Ring(double outer_radius, double inner_radius, point_t position)
+    : outer_radius_(outer_radius),
+      inner_radius_(inner_radius),
       position_(position)
 {
-    if (outerRadius <= 0.0 || innerRadius <= 0.0 ||
-        innerRadius >= outerRadius)
+    if (outer_radius <= 0.0 ||
+        inner_radius <= 0.0 ||
+        inner_radius >= outer_radius)
     {
         throw std::invalid_argument("Invalid ring radii");
     }
@@ -23,15 +23,15 @@ Ring::Ring(double outerRadius, double innerRadius, point_t position)
 
 double Ring::getArea() const
 {
-    return PI * (outerRadius_ * outerRadius_
-               - innerRadius_ * innerRadius_);
+    return pi * (outer_radius_ * outer_radius_
+               - inner_radius_ * inner_radius_);
 }
 
 rectangle_t Ring::getFrameRect() const
 {
     return {
-        2.0 * outerRadius_,
-        2.0 * outerRadius_,
+        2.0 * outer_radius_,
+        2.0 * outer_radius_,
         position_
     };
 }
@@ -54,6 +54,6 @@ void Ring::scale(double factor)
         throw std::invalid_argument("Scale factor must be positive");
     }
 
-    outerRadius_ *= factor;
-    innerRadius_ *= factor;
+    outer_radius_ *= factor;
+    inner_radius_ *= factor;
 }
